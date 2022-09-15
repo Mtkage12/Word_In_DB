@@ -3,11 +3,29 @@ import pandas as pd
 
 
 def is_contain(dataframe, search_word):
+    """データフレーム内にキーワードが存在するか
+
+    Args:
+        dataframe (pd.DataFrame): データフレーム
+        search_word (string): 検索キーワード
+
+    Returns:
+        bool: 検索キーワードが存在したらTrueを返す
+    """
     return f'{search_word}' in dataframe.values
 
 
-def is_series_contain(dataframe, search_word):
-    return f'{search_word}' in dataframe.to_list()
+def is_series_contain(df_series, search_word):
+    """シリーズ内にキーワードが存在するか
+
+    Args:
+        dataframe (pd.Series): シリーズ
+        search_word (string): 検索キーワード
+
+    Returns:
+        bool: 検索キーワードが存在したらTrueを返す
+    """
+    return f'{search_word}' in df_series.to_list()
 
 
 class Read:
