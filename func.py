@@ -39,8 +39,12 @@ class Read:
         with sqlite3.connect(db_filepath) as conn:
             df = pd.read_sql_query(f'SELECT * from {table_name}', conn)
         conn.close()
-        self.dataframe = df
+        self._dataframe = df
         Read.cnt.append(self)
+
+    @property
+    def dataframe(self):
+        return self._dataframe
 
 
 def print_word_in_df(db_filename, search_word):
