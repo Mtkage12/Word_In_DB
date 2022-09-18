@@ -39,12 +39,12 @@ class Read:
         with sqlite3.connect(db_filepath) as conn:
             df = pd.read_sql_query(f'SELECT * from {table_name}', conn)
         conn.close()
-        self._dataframe = df
+        self.__dataframe = df
         Read.cnt.append(self)
 
     @property
     def dataframe(self):
-        return self._dataframe
+        return self.__dataframe
 
 
 def print_word_in_df(db_filename, search_word):
@@ -59,6 +59,7 @@ def print_word_in_df(db_filename, search_word):
         cur = conn.cursor()
         cur.execute("SELECT * FROM sqlite_master WHERE type='table'")
         table_lst = [x[1] for x in cur.fetchall()]
+
     book = [l for l in table_lst if is_contain(
         Read(db_filename, l).dataframe, search_word) == True]
     for b in book:
