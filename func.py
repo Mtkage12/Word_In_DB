@@ -19,7 +19,7 @@ def is_series_contain(df_series, search_word):
     """シリーズ内にキーワードが存在するか
 
     Args:
-        dataframe (pd.Series): シリーズ
+        df_series (pd.Series): シリーズ
         search_word (string): 検索キーワード
 
     Returns:
