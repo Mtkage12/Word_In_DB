@@ -1,0 +1,8 @@
+# untracking
+*/
+*
+
+# tracking
+!.gitignore
+!func.py
+!README.md
