@@ -1,11 +1,11 @@
 # Usage
 
-データベース内において検索文字を探索。
+Searches for the search character in the database.
 
-存在する場合はどのテーブルなのか、そして、どのシリーズに存在するのかを出力。
+If it exists, output which table and series it exists in.
 
 # Note
 
-第一引数にデータベースファイル「.db」
+The first argument is the database file ".db".
 
-第二引数に検索文字
+The second argument is the search character
