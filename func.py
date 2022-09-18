@@ -12,6 +12,8 @@ def is_contain(dataframe, search_word):
     Returns:
         bool: 検索キーワードが存在したらTrueを返す
     """
+    for i in dataframe.columns:
+        dataframe[f'{i}'] = dataframe[f'{i}'].astype(str)
     return f'{search_word}' in dataframe.values
 
 
@@ -25,6 +27,7 @@ def is_series_contain(df_series, search_word):
     Returns:
         bool: 検索キーワードが存在したらTrueを返す
     """
+    df_series = df_series.astype(str)
     return f'{search_word}' in df_series.to_list()
 
 
@@ -36,7 +39,7 @@ class Read:
         with sqlite3.connect(db_filepath) as conn:
             df = pd.read_sql_query(f'SELECT * from {table_name}', conn)
         conn.close()
-        self.data = df
+        self.dataframe = df
         Read.cnt.append(self)
 
 
@@ -53,10 +56,10 @@ def print_word_in_df(db_filename, search_word):
         cur.execute("SELECT * FROM sqlite_master WHERE type='table'")
         table_lst = [x[1] for x in cur.fetchall()]
     book = [l for l in table_lst if is_contain(
-        Read(db_filename, l).data, search_word) == True]
+        Read(db_filename, l).dataframe, search_word) == True]
     for b in book:
         print(f'テーブル名：{b}')
-        df = Read(db_filename, b).data
+        df = Read(db_filename, b).dataframe
         col_lst = df.columns
         col_book = [c for c in col_lst if is_series_contain(
             df[c], search_word) == True]
@@ -65,4 +68,4 @@ def print_word_in_df(db_filename, search_word):
 
 
 if __name__ == '__main__':
-    print_word_in_df('xxx.db', 'wwwww')
+    pass

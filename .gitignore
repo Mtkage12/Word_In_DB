@@ -1,6 +1,8 @@
 # untracking
 */
 *
+*.db
+sample.py
 
 # tracking
 !.gitignore
