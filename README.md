@@ -1,11 +1,15 @@
-# Usage
+# Word_In_DB
 
-Searches for the search character in the database.
+Searches for the search word in the database.
 
 If it exists, output which table and series it exists in.
 
-# Note
+# Usage
 
-The first argument is the database file ".db".
+Main Module: func.py
 
-The second argument is the search character
+Sample Module: sample.py
+
+# Requirement
+
+pandas==1.2.4
