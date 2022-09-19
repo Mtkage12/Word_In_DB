@@ -1,7 +1,18 @@
 import sqlite3
 import pandas as pd
+import datetime
 
-
+def get_now():
+    """Returns the current time in 'YYYYMMDDhhmmss format'
+    
+    Returns:
+        str: Current date and time
+    """
+    t_delta = datetime.timedelta(hours=9)
+    JST = datetime.timezone(t_delta, 'JST')
+    now = datetime.datetime.now(JST)
+    return now.strftime('%Y%m%d%H%M')
+    
 def is_contain(dataframe, search_word):
     """Are keywords present in the dataframe.
 

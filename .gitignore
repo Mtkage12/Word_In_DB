@@ -8,3 +8,4 @@ sample.py
 !.gitignore
 !func.py
 !README.md
+!feature_log.py
