@@ -1,8 +1,5 @@
 import os
-import pandas as pd
 from func import deco, Db, SearchGate, Table, get_now
-# from feature_log import Output
-
 
 @deco
 def main():
