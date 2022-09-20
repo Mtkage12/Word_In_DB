@@ -1,5 +1,5 @@
 import os
-from func import deco, Db, SearchGate, Table, get_now
+from func import deco, Db, SearchGate
 
 @deco
 def main():
