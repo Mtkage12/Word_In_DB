@@ -67,6 +67,8 @@ class Table:
         with sqlite3.connect(db_filepath) as conn:
             df = pd.read_sql_query(f'SELECT * from {table_name}', conn)
         conn.close()
+        for i in df.columns:
+            df[f'{i}'] = df[f'{i}'].astype(str)
         self.__dataframe = df
 
     @property
@@ -108,6 +110,7 @@ class SearchGate:
     def __init__(self, db: Db, search_word: str):
         self.__search_word = search_word
         self.__exist_word_table = self.get_exist_table_info(db)
+        self.__db = db
 
     def get_exist_table_info(self, db: Db) -> Dict[str, List]:
         """Returns table information that exists.
@@ -126,8 +129,20 @@ class SearchGate:
             value = [col for col in df.columns if is_series_contain(
                 df[col], self.__search_word) == True]
             book.setdefault(table, value)
-        self.__exist_word_table = book
         return book
+
+    def output(self):
+        """Export to ExcelFille
+
+        Outputs:
+            ExcelFile: Sheets that filtered export to ExcelFile.
+        """
+        with pd.ExcelWriter(f'{get_now()}.xlsx') as writer:
+            for k, v in self.exist_word_table.items():
+                df = Table(self.db.file_name, k).dataframe.copy()
+                buf = df[df[f'{v[0]}'] == f'{self.__search_word}'].copy()
+                buf.to_excel(writer, sheet_name=f'{k}', index=False)
+        return None
 
     @property
     def search_word(self):
@@ -136,6 +151,10 @@ class SearchGate:
     @property
     def exist_word_table(self):
         return self.__exist_word_table
+
+    @property
+    def db(self):
+        return self.__db
 
 
 if __name__ == '__main__':

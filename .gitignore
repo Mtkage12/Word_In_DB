@@ -2,10 +2,10 @@
 */
 *
 *.db
+*.xlsx
 
 # tracking
 !.gitignore
 !func.py
 !README.md
 !sample.py
-!feature_log.py
