@@ -112,10 +112,7 @@ class SearchGate:
         self.__exist_word_table = self.get_exist_table_info(db)
         self.__db = db
         self.__len = len(self.__exist_word_table)
-        
-    # def __len__(self):
-    #     return len(self.__exist_word_table)
-    
+
     def get_exist_table_info(self, db: Db) -> Dict[str, List]:
         """Returns table information that exists.
 
@@ -161,7 +158,7 @@ class SearchGate:
         return self.__db
 
     @property
-    def __len__(self):
+    def len(self):
         return self.__len
 
 
